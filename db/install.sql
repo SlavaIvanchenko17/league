@@ -1,0 +1,3 @@
+DROP DATABASE league;
+CREATE USER user_league WITH PASSWORD '12345';
+CREATE DATABASE league OWNER user_league;
