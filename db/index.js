@@ -1,10 +1,8 @@
-'use strict';
-
 const Sequelize = require('sequelize');
 
 const MODELS = [
   'match',
-  'team'
+  'team',
 ];
 
 class Database {
@@ -14,7 +12,7 @@ class Database {
   }
 
   static async start(options) {
-    const db = new DB(options);
+    const db = new Database(options);
     await db.sequelize.authenticate();
     await db.load(MODELS);
     return db;
@@ -22,12 +20,12 @@ class Database {
 
   async load(list) {
     const assocations = [];
-    list.forEach(name => {
+    list.forEach((name) => {
       const { model, associate } = require(`./models/${name}.js`)(this.sequelize);
       this.models[name] = model;
       assocations.push(associate);
     });
-    assocations.forEach(associate => associate(this.models));
+    assocations.forEach((associate) => associate(this.models));
   }
 }
 
