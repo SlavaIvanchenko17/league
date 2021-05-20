@@ -1,9 +1,15 @@
+'use strict';
+
 class Match {
   constructor(data) {
-    const { id = null, homeTeam, guestTeam } = data;
+    const {
+      id = null, homeId, guestId, homeName, guestName,
+    } = data;
     this.id = id;
-    this.homeTeam = homeTeam;
-    this.guestTeam = guestTeam;
+    this.homeId = homeId;
+    this.guestId = guestId;
+    this.homeName = homeName;
+    this.guestName = guestName;
   }
 }
 

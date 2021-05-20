@@ -1,5 +1,8 @@
+'use strict';
+
 const Match = require('../../../domain/Match');
 const DB = require('../../db/models');
+const sql = require('../../constants/sql');
 
 class MatchRepository {
   constructor() {
@@ -7,20 +10,29 @@ class MatchRepository {
     this.model = this.db.matches;
   }
 
-  async read(id) {
-    let sql = `SELECT Matches.Id,
-    t1.name as "homeTeam",
-    t2.name as "guestTeam" 
-    FROM Matches
-    INNER JOIN Teams as t1
-    ON "homeTeam" = t1.Id
-    INNER JOIN Teams as t2
-    ON "guestTeam" = t2.Id`;
-    if (id) {
-      sql += ` WHERE Matches.Id = ${id}`;
-    }
-    const results = await this.db.sequelize.query(sql, { raw: true });
-    return results[0].map((team) => new Match(team));
+  async read() {
+    const matches = await this.db.sequelize.query(sql, {
+      raw: true,
+    });
+    return matches[0].map((match) => new Match(match));
+  }
+
+  async readById(id) {
+    const match = await this.db.sequelize.query(
+      `${sql} WHERE Matches.Id = ${id}`, {
+        raw: true,
+      },
+    );
+    return new Match(match[0]);
+  }
+
+  async order(order) {
+    const matches = await this.db.sequelize.query(
+      `${sql} ORDER BY ${order}`, {
+        raw: true,
+      },
+    );
+    return matches[0].map((match) => new Match(match));
   }
 
   async create(data) {
@@ -28,11 +40,15 @@ class MatchRepository {
   }
 
   async delete(id) {
-    return this.model.destroy({ where: { id } });
+    return this.model.destroy({
+      where: { id },
+    });
   }
 
   async update(id, data) {
-    return this.model.update(data, { where: { id } });
+    return this.model.update(data, {
+      where: { id },
+    });
   }
 }
 
