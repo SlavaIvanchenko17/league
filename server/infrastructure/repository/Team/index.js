@@ -1,11 +1,11 @@
 'use strict';
 
 const Team = require('../../../domain/Team');
-const DB = require('../../db/models');
+const BaseRepository = require('../BaseRepository');
 
-class TeamRepository {
+class TeamRepository extends BaseRepository {
   constructor() {
-    this.db = DB;
+    super()
     this.model = this.db.teams;
   }
 

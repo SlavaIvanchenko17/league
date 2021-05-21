@@ -1,9 +1,9 @@
 'use strict';
 
-module.exports = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRepository }) => {
-  const m = await MatchRepository.readById(id);
-  const homeTeam = await TeamRepository.readById(m[0].homeId);
-  const guestTeam = await TeamRepository.readById(m[0].guestId);
+const finishMatch = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRepository }) => {
+  const match = await MatchRepository.read(id);
+  const homeTeam = await TeamRepository.readById(match[0].homeId);
+  const guestTeam = await TeamRepository.readById(match[0].guestId);
   await TeamRepository.update(homeTeam.id, {
     goalScored: homeTeam.goalScored + homeGoals,
     goalСonceded: homeTeam.goalСonceded + guestGoals,
@@ -12,20 +12,19 @@ module.exports = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRe
     goalScored: guestTeam.goalScored + guestGoals,
     goalСonceded: guestTeam.goalСonceded + homeGoals,
   });
+  const updatePoints = (team, points) => {
+    TeamRepository.update(team.id, {
+      points: team.points + points,
+    });
+  };
   if (homeGoals > guestGoals) {
-    await TeamRepository.update(homeTeam.id, {
-      points: homeTeam.points + 3,
-    });
+    updatePoints(homeTeam, 3);
   } else if (homeGoals < guestGoals) {
-    await TeamRepository.update(guestTeam.id, {
-      points: guestTeam.points + 3,
-    });
+    updatePoints(guestTeam, 3);
   } else {
-    await TeamRepository.update(homeTeam.id, {
-      points: homeTeam.points + 1,
-    });
-    await TeamRepository.update(guestTeam.id, {
-      points: guestTeam.points + 1,
-    });
+    updatePoints(homeTeam, 1);
+    updatePoints(guestTeam, 1);
   }
 };
+
+module.exports = finishMatch;

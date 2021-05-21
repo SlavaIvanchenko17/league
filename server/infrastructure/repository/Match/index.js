@@ -1,16 +1,16 @@
 'use strict';
 
 const Match = require('../../../domain/Match');
-const DB = require('../../db/models');
+const BaseRepository = require('../BaseRepository');
 const sql = require('../../constants/sql');
 
-class MatchRepository {
+class MatchRepository extends BaseRepository {
   constructor() {
-    this.db = DB;
+    super();
     this.model = this.db.matches;
   }
 
-  async read() {
+  async read(id) {
     const matches = await this.db.sequelize.query(sql, {
       raw: true,
     });
