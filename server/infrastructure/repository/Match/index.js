@@ -7,7 +7,7 @@ const sql = require('../../constants/sql');
 class MatchRepository extends BaseRepository {
   constructor() {
     super();
-    this.model = this.db.matches;
+    this.model = this.db.setting.matches;
   }
 
   async read(id) {
