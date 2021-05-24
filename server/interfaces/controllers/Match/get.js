@@ -6,18 +6,13 @@ const app = require('fastify')({
 
 const service = require('../../../services/Team/getTeamById');
 const repo = require('../../../infrastructure/repository');
-
-const get = async (req, reply) => {
-    const id = Number(req.params.id)
-   const data = await service(id, repo);
-   console.log('ff');
-   return data;
-};
+const handler = require('../index');
+const repositories = require('../../../infrastructure/repository');
 
 const routes = [{
     method: 'GET',
     url: '/api/blogs/:id',
-    handler: get,
+    handler: handler(service),
 }];
 
 // Declare a route

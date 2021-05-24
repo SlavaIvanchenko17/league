@@ -1,12 +1,9 @@
 'use strict';
 
-const TeamRepo = require('./Team');
-const MatchRepo = require('./Match');
-
-const TeamRepository = new TeamRepo();
-const MatchRepository = new MatchRepo();
+const TeamRepository = require('./Team');
+const MatchRepository = require('./Match');
 
 module.exports = {
-  TeamRepository,
-  MatchRepository,
+  TeamRepository : new TeamRepository(),
+  MatchRepository : new MatchRepository(),
 };
