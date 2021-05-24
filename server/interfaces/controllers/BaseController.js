@@ -1,3 +1,5 @@
+'use strict';
+
 const repositories = require('../../infrastructure/repository');
 
 class BaseController{
@@ -11,3 +13,4 @@ class BaseController{
     }
 }
 
+module.exports = BaseController;

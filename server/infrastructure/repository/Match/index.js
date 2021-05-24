@@ -1,6 +1,6 @@
 'use strict';
 
-const Match = require('../../../domain/Match');
+const { MatchTeam } = require('../../../domain/Match');
 const BaseRepository = require('../BaseRepository');
 const sql = require('../../constants/sql');
 
@@ -14,7 +14,7 @@ class MatchRepository extends BaseRepository {
     const matches = await this.db.sequelize.query(sql, {
       raw: true,
     });
-    return matches[0].map((match) => new Match(match));
+    return matches[0].map((match) => new MatchTeam(match));
   }
 
   async readById(id) {
@@ -23,7 +23,7 @@ class MatchRepository extends BaseRepository {
         raw: true,
       },
     );
-    return new Match(match[0]);
+    return new MatchTeam(match[0]);
   }
 
   async order(order) {
