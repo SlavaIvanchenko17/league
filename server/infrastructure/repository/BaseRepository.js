@@ -1,6 +1,6 @@
 'use strict';
 
-const DB = require('../db/models');
+const DB = require('../db');
 const config = require('../config/db');
 
 class BaseRepository {

@@ -14,9 +14,9 @@ const controller = fn => async (req, reply) => {
         }
         console.log(req.method);
         const result = await fn(...args, repositories);
-        reply.send(result);
+        reply.code(200).send(result);
     } catch (error) {
-        console.log('Not found');
+        reply.send('Not found');
     }
 };
 

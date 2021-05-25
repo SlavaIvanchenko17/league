@@ -1,13 +1,13 @@
 'use strict';
 
-const { MatchTeam } = require('../../../domain/Match');
+const { Match, MatchTeam } = require('../../../domain/Match');
 const BaseRepository = require('../BaseRepository');
 const sql = require('../../constants/sql');
 
 class MatchRepository extends BaseRepository {
   constructor() {
     super();
-    this.model = this.db.setting.matches;
+    this.model = this.db.models.matches;
   }
 
   async read(id) {
@@ -32,11 +32,12 @@ class MatchRepository extends BaseRepository {
         raw: true,
       },
     );
-    return matches[0].map((match) => new Match(match));
+    return matches[0].map((match) => new MatchTeam(match));
   }
 
   async create(data) {
-    return this.model.create(data);
+    const match = await this.model.create(data);
+    return new Match(match);
   }
 
   async delete(id) {
@@ -48,7 +49,7 @@ class MatchRepository extends BaseRepository {
   async update(id, data) {
     return this.model.update(data, {
       where: { id },
-    });
+    });;
   }
 }
 

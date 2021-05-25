@@ -1,6 +1,6 @@
 'use strict';
 
-const finishMatch = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRepository }) => {
+module.exports = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRepository }) => {
   const match = await MatchRepository.read(id);
   const homeTeam = await TeamRepository.readById(match[0].homeId);
   const guestTeam = await TeamRepository.readById(match[0].guestId);
@@ -25,6 +25,5 @@ const finishMatch = async (id, { homeGoals, guestGoals }, { TeamRepository, Matc
     updatePoints(homeTeam, 1);
     updatePoints(guestTeam, 1);
   }
-};
-
-module.exports = finishMatch;
+  return MatchRepository.delete(id);
+};;
