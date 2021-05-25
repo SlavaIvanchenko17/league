@@ -3,7 +3,7 @@
 class Match {
   constructor(data) {
     const {
-      id = null, homeId, guestId
+      id = null, homeId, guestId,
     } = data;
     this.id = id;
     this.homeId = homeId;
@@ -16,7 +16,7 @@ class MatchTeam extends Match {
     const {
       id, homeId, guestId, homeName, guestName,
     } = data;
-    super({id, homeId, guestId});
+    super({ id, homeId, guestId });
     this.homeName = homeName;
     this.guestName = guestName;
   }
@@ -24,5 +24,5 @@ class MatchTeam extends Match {
 
 module.exports = {
   Match,
-  MatchTeam
+  MatchTeam,
 };
