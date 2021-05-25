@@ -26,4 +26,4 @@ module.exports = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRe
     updatePoints(guestTeam, 1);
   }
   return MatchRepository.delete(id);
-};;
+};

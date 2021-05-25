@@ -10,7 +10,7 @@ class MatchRepository extends BaseRepository {
     this.model = this.db.models.matches;
   }
 
-  async read(id) {
+  async read() {
     const matches = await this.db.sequelize.query(sql, {
       raw: true,
     });
@@ -49,7 +49,7 @@ class MatchRepository extends BaseRepository {
   async update(id, data) {
     return this.model.update(data, {
       where: { id },
-    });;
+    });
   }
 }
 

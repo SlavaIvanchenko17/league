@@ -6,8 +6,8 @@ const config = require('../config/db');
 class BaseRepository {
   constructor() {
     const proto = Object.getPrototypeOf(this);
-    if(proto.constructor === BaseRepository){
-        throw new Error('Abstract class');
+    if (proto.constructor === BaseRepository) {
+      throw new Error('Abstract class');
     }
     this.db = new DB(config.db);
   }

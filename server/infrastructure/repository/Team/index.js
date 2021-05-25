@@ -5,7 +5,7 @@ const BaseRepository = require('../BaseRepository');
 
 class TeamRepository extends BaseRepository {
   constructor() {
-    super()
+    super();
     this.model = this.db.models.teams;
   }
 
