@@ -13,18 +13,21 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Match.init({
-    homeTeam: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+  Match.init(
+    {
+      homeTeam: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      guestTeam: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
-    guestTeam: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    {
+      sequelize,
+      modelName: 'matches',
     },
-  }, {
-    sequelize,
-    modelName: 'matches',
-  });
+  );
   return Match;
 };

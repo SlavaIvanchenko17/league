@@ -14,7 +14,7 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
+      "prettier/prettier": ["error"],
       "no-unused-vars": "warn",
       "no-console": 0,
       "func-names": 0,
@@ -27,6 +27,5 @@
       "import/no-dynamic-require": 0,
       "strict": 0,
       "max-classes-per-file": 0
-
     }
 }

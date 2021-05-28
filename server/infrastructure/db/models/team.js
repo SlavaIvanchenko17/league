@@ -13,29 +13,32 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
   }
-  Teams.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  Teams.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      goalScored: {
+        type: DataTypes.STRING,
+        allowNull: true,
+        default: 0,
+      },
+      goalСonceded: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        default: 0,
+      },
+      points: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        default: 0,
+      },
     },
-    goalScored: {
-      type: DataTypes.STRING,
-      allowNull: true,
-      default: 0,
+    {
+      sequelize,
+      modelName: 'teams',
     },
-    goalСonceded: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      default: 0,
-    },
-    points: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      default: 0,
-    },
-  }, {
-    sequelize,
-    modelName: 'teams',
-  });
+  );
   return Teams;
 };

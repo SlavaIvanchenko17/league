@@ -18,20 +18,16 @@ class MatchRepository extends BaseRepository {
   }
 
   async readById(id) {
-    const match = await this.db.sequelize.query(
-      `${sql} WHERE Matches.Id = ${id}`, {
-        raw: true,
-      },
-    );
+    const match = await this.db.sequelize.query(`${sql} WHERE Matches.Id = ${id}`, {
+      raw: true,
+    });
     return new MatchTeam(match[0]);
   }
 
   async order(order) {
-    const matches = await this.db.sequelize.query(
-      `${sql} ORDER BY ${order}`, {
-        raw: true,
-      },
-    );
+    const matches = await this.db.sequelize.query(`${sql} ORDER BY ${order}`, {
+      raw: true,
+    });
     return matches[0].map((match) => new MatchTeam(match));
   }
 

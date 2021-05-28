@@ -18,7 +18,10 @@ class Database {
     const files = fs.readdirSync(modelsPath);
     for (const fileName of files) {
       if (!fileName.endsWith('.js')) continue;
-      const model = require(path.join(modelsPath, fileName))(this.sequelize, Sequelize.DataTypes);
+      const model = require(path.join(modelsPath, fileName))(
+        this.sequelize,
+        Sequelize.DataTypes,
+      );
       this.models[model.name] = model;
     }
 

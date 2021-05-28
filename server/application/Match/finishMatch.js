@@ -1,6 +1,10 @@
 'use strict';
 
-module.exports = async (id, { homeGoals, guestGoals }, { TeamRepository, MatchRepository }) => {
+module.exports = async (
+  id,
+  { homeGoals, guestGoals },
+  { TeamRepository, MatchRepository },
+) => {
   const match = await MatchRepository.read(id);
   const homeTeam = await TeamRepository.readById(match[0].homeId);
   const guestTeam = await TeamRepository.readById(match[0].guestId);
