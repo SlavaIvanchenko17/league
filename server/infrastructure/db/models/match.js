@@ -6,20 +6,20 @@ module.exports = (sequelize, DataTypes) => {
   class Match extends Model {
     static associate(models) {
       Match.belongsTo(models.teams, {
-        foreignKey: 'homeTeam',
+        foreignKey: 'homeId',
       });
       Match.belongsTo(models.teams, {
-        foreignKey: 'guestTeam',
+        foreignKey: 'guestId',
       });
     }
   }
   Match.init(
     {
-      homeTeam: {
+      homeId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      guestTeam: {
+      guestId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

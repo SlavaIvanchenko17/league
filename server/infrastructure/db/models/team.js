@@ -6,10 +6,10 @@ module.exports = (sequelize, DataTypes) => {
   class Teams extends Model {
     static associate(models) {
       Teams.hasMany(models.matches, {
-        foreignKey: 'homeTeam',
+        foreignKey: 'homeId',
       });
       Teams.hasMany(models.matches, {
-        foreignKey: 'guestTeam',
+        foreignKey: 'guestId',
       });
     }
   }

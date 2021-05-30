@@ -12,10 +12,11 @@ const controller = (fn) => async (req, reply) => {
     if (req.body) {
       args.push(req.body);
     }
-    console.log(req.method);
+    console.log(`${req.url} - ${req.method}`);
     const result = await fn(...args, repositories);
-    reply.code(200).send(result);
+    reply.send(result);
   } catch (error) {
+    console.error(error);
     reply.send('Not found');
   }
 };

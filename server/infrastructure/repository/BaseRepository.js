@@ -1,7 +1,7 @@
 'use strict';
 
-const DB = require('../db');
-const config = require('../config/db');
+const Database = require('../db');
+const config = require('../config');
 
 class BaseRepository {
   constructor() {
@@ -9,7 +9,7 @@ class BaseRepository {
     if (proto.constructor === BaseRepository) {
       throw new Error('Abstract class');
     }
-    this.db = new DB(config.db);
+    this.db = new Database(config.db);
   }
 
   read() {

@@ -5,6 +5,7 @@ const app = require('fastify')({
 });
 
 const routes = require('./interfaces/routes');
+const { serverPort } = require('./infrastructure/config');
 const createServer = require('./interfaces/server');
 
-createServer(app, 3000, routes);
+createServer(serverPort, app, routes);

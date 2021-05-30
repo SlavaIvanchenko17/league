@@ -1,6 +1,6 @@
 'use strict';
 
-const createServer = async (server, port, routes) => {
+const createServer = async (port, server, routes) => {
   routes.forEach((route) => {
     server.route(route);
   });

@@ -5,14 +5,14 @@ module.exports = async (
   { homeGoals, guestGoals },
   { TeamRepository, MatchRepository },
 ) => {
-  const match = await MatchRepository.read(id);
-  const homeTeam = await TeamRepository.readById(match[0].homeId);
-  const guestTeam = await TeamRepository.readById(match[0].guestId);
-  await TeamRepository.update(homeTeam.id, {
+  const match = await MatchRepository.readById(id);
+  const homeTeam = await TeamRepository.readById(match.homeId);
+  const guestTeam = await TeamRepository.readById(match.guestId);
+  TeamRepository.update(homeTeam.id, {
     goalScored: homeTeam.goalScored + homeGoals,
     goalСonceded: homeTeam.goalСonceded + guestGoals,
   });
-  await TeamRepository.update(guestTeam.id, {
+  TeamRepository.update(guestTeam.id, {
     goalScored: guestTeam.goalScored + guestGoals,
     goalСonceded: guestTeam.goalСonceded + homeGoals,
   });
