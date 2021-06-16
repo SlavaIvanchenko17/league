@@ -5,7 +5,7 @@ const api = require('./client');
 const client = api('http://localhost:3000');
 
 client
-  .orderTeams()
+  .getTeamById(4)
   .then((data) => {
     console.log('=== Tournament table ===');
     console.table(data);

@@ -26,7 +26,8 @@
           "trailingComma": "all",
           "useTabs": false
         }],
-      "no-unused-vars": "warn",
+      "consistent-return": 0,
+      "no-unused-vars": 0,
       "no-console": 0,
       "func-names": 0,
       "no-process-exit": 0,

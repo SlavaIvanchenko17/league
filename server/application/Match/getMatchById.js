@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = (id, { MatchRepository }) => MatchRepository.read(id);
+module.exports = (id, { MatchRepository }) => MatchRepository.readById(id);

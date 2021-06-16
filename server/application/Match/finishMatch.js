@@ -5,7 +5,7 @@ module.exports = async (
   { homeGoals, guestGoals },
   { TeamRepository, MatchRepository },
 ) => {
-  const match = await MatchRepository.read(id);
+  const match = await MatchRepository.readById(id);
   const [homeTeam, guestTeam] = await Promise.all([
     TeamRepository.readById(match.homeId),
     TeamRepository.readById(match.guestId),
