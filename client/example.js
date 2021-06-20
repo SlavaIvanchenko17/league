@@ -1,11 +1,11 @@
 'use strict';
 
-const league = require('./client');
+const api = require('./client');
 
-const client = league.Client('http://localhost:3000');
+const client = api('http://localhost:3000');
 
 client
-  .orderTeams()
+  .getTeamById(4)
   .then((data) => {
     console.log('=== Tournament table ===');
     console.table(data);

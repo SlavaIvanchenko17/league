@@ -2,7 +2,7 @@
 
 const request = require('request');
 
-const Client = (baseUrl) => {
+const client = (baseUrl) => {
   const method = (path, req, data) =>
     new Promise((resolve, reject) => {
       request(
@@ -26,4 +26,4 @@ const Client = (baseUrl) => {
   };
 };
 
-module.exports = { Client };
+module.exports = client;

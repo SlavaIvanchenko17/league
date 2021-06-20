@@ -1,9 +1,9 @@
 'use strict';
 
-const http = require('./common');
+const common = require('./common');
 
-const Client = (baseUrl) => {
-  const client = http.Client(baseUrl);
+const api = (baseUrl) => {
+  const client = common(baseUrl);
 
   return {
     getTeams: () => client.get(`/teams`),
@@ -22,4 +22,4 @@ const Client = (baseUrl) => {
   };
 };
 
-module.exports = { Client };
+module.exports = api;

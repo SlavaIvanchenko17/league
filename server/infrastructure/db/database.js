@@ -9,8 +9,6 @@ class Database {
     this.sequelize = new Sequelize(options);
     this.models = {};
     this.loadModels();
-    this.models.sequelize = this.sequelize;
-    this.models.Sequelize = Sequelize;
   }
 
   loadModels() {

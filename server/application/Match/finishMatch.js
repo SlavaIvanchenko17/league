@@ -6,8 +6,10 @@ module.exports = async (
   { TeamRepository, MatchRepository },
 ) => {
   const match = await MatchRepository.readById(id);
-  const homeTeam = await TeamRepository.readById(match.homeId);
-  const guestTeam = await TeamRepository.readById(match.guestId);
+  const [homeTeam, guestTeam] = await Promise.all([
+    TeamRepository.readById(match.homeId),
+    TeamRepository.readById(match.guestId),
+  ]);
   TeamRepository.update(homeTeam.id, {
     goalScored: homeTeam.goalScored + homeGoals,
     goalСonceded: homeTeam.goalСonceded + guestGoals,
