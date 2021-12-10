@@ -2,6 +2,11 @@
 
 const repositories = require('../../infrastructure/repository');
 
+/**
+ * @function controller
+ * @param {callback} fn - service
+ * @return {function} - controller
+ */
 const controller = (fn) => async (req, reply) => {
   try {
     const args = [];

@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       goalScored: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: true,
         default: 0,
       },
-      goalСonceded: {
+      goalConceded: {
         type: DataTypes.INTEGER,
         allowNull: true,
         default: 0,

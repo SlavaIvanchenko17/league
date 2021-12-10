@@ -3,12 +3,18 @@
 const Database = require('../db');
 const config = require('../config');
 
+/**
+ * Class to create abstract class
+ */
 class BaseRepository {
   constructor() {
     const proto = Object.getPrototypeOf(this);
     if (proto.constructor === BaseRepository) {
       throw new Error('Abstract class');
     }
+    /**
+     * @property {Object} db - database
+     */
     this.db = new Database(config.db);
   }
 

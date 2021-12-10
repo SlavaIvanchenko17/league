@@ -3,6 +3,7 @@
 const controller = require('../controllers');
 const service = require('../../application');
 
+/** @type {Array} - all routes */
 const routes = [
   {
     method: 'GET',

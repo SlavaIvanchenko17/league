@@ -1,22 +1,35 @@
 'use strict';
 
+/**
+ * @module finishMatch
+ */
+
+/**
+ * finish match
+ * @param {number} id - id of match
+ * @param {number} homeGoals - goals of home team
+ * @param {number} guestGoals - goals of guest team
+ * @param {Object} TeamRepository - Team Repository
+ * @param {Object} MatchRepository - Match Repository
+ */
 module.exports = async (
-  id,
-  { homeGoals, guestGoals },
-  { TeamRepository, MatchRepository },
+    id,
+    { homeGoals, guestGoals },
+    { TeamRepository, MatchRepository },
 ) => {
   const match = await MatchRepository.readById(id);
   const [homeTeam, guestTeam] = await Promise.all([
-    TeamRepository.readById(match.homeId),
-    TeamRepository.readById(match.guestId),
+    TeamRepository.readById(match[0].homeId),
+    TeamRepository.readById(match[0].guestId),
   ]);
+
   TeamRepository.update(homeTeam.id, {
     goalScored: homeTeam.goalScored + homeGoals,
-    goalСonceded: homeTeam.goalСonceded + guestGoals,
+    goalConceded: homeTeam.goalConceded + guestGoals,
   });
   TeamRepository.update(guestTeam.id, {
     goalScored: guestTeam.goalScored + guestGoals,
-    goalСonceded: guestTeam.goalСonceded + homeGoals,
+    goalConceded: guestTeam.goalConceded + homeGoals,
   });
   const updatePoints = (team, points) => {
     TeamRepository.update(team.id, {

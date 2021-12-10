@@ -4,13 +4,24 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
+/**
+ * Class to create a new Team
+ */
 class Database {
+  /**
+   * @param {Object} options - db config
+   */
   constructor(options) {
     this.sequelize = new Sequelize(options);
+    this.sequelize.sync({force: false});
     this.models = {};
     this.loadModels();
   }
 
+  /**
+   * @property {function} loadModels - load models
+   * @return {void}
+   */
   loadModels() {
     const modelsPath = path.join(__dirname, '/models');
     const files = fs.readdirSync(modelsPath);

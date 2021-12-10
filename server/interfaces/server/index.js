@@ -1,9 +1,20 @@
 'use strict';
 
+const swagger = require('../../infrastructure/swagger');
+
+
+/**
+ * @function createServer
+ * @param {number} port - port
+ * @param {Object} server - fastify-server
+ * @param {Array} routes - routes
+ * @return {void}
+ */
 const createServer = async (port, server, routes) => {
-  routes.forEach((route) => {
-    server.route(route);
-  });
+  server.register(require('fastify-swagger'), swagger.options);
+
+  routes.forEach((route) => server.route(route));
+
   server.listen(port, (err, address) => {
     if (err) {
       console.error(err);
